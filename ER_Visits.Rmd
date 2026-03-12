@@ -288,6 +288,7 @@ mB <- fepois(
 summary(mA); summary(mB)
 ```
 
+NOTE: 345/0/0 fixed-effects (1,328,940 observations) removed because of only 0 or only 1 outcomes or singletons.
 Binomial model:
 GLM estimation, family = binomial, Dep. Var.: is_le6
 Observations: 2,588,544
@@ -309,6 +310,7 @@ Impact days (landfall): A positive and significant log-odds means ER visit count
 This makes sense: Many people stay home. Clinics/hospitals reduce service hours. Travel becomes difficult.
 This model focuses on the lower tail of demand and here, Impact days show a clear reduction
 
+NOTE: 8/0/0 fixed-effects (8 observations) removed because of only 0 outcomes or singletons.
 Poisson model
 Poisson estimation, Dep. Var.: er_visits
 Observations: 2,722,224
@@ -332,7 +334,7 @@ Jointly the models show storm Impact periods suppress ER utilization — likely 
 
 During hurricane season in Florida, patients ramp up ER usage slightly the week before storms (Threat). On the direct storm impact day, ER demand collapses (Impact). After storms, ER visits rebound and exceed normal levels (Cleanup). This is a classic displacement–disruption pattern. Pre-storm increase → mid-storm suppression → post-storm rebound. The fixed effects ensure this is not confounded by ZIP characteristics, seasonal cycles, or weekly patterns
 
-* Compare results with a subset of the stronger storms 55+
+## Compare results with a subset of the stronger storms 55+
 
 GLM estimation, family = binomial, Dep. Var.: is_le6
 Observations: 2,576,988
@@ -355,6 +357,28 @@ effect::Threat   0.014805   0.019471  0.760378 0.4470288
 effect::Impact  -0.235362   0.077399 -3.040881 0.0023589 ** 
 Log-Likelihood: -8,280,629.7   Adj. Pseudo R2: 0.605412
            BIC: 16,576,477.7     Squared Cor.: 0.880557
+           
+## Unified expected ER visit predictions
+```{r}
+# 1. Get predicted probabilities from part A
+dat$prob_le6  <- predict(mA, type = "response")
+
+# 2. Predicted Poisson mean for days with Y>6
+dat_gt6       <- dat
+dat_gt6$pred_gt6 <- predict(mB, type = "response")
+
+# 3. Empirical mean among ≤6-days (your data codes them as "6")
+mean_le6 <- 6  # or mean(dat$er_visits[dat$er_visits <= 6])
+
+# 4. Combined expected ER visits for each observation
+dat$E_Y <- dat$prob_le6 * mean_le6 +
+           (1 - dat$prob_le6) * dat_gt6$pred_gt6
+
+# 5. Average predicted visits by effect level
+combined_effect <- dat[, .(expected_visits = mean(E_Y)), by = effect]
+combined_effect
+```
+
 
 ## Function: two‑part g‑computation with clustered bootstrap + figure
 
@@ -549,7 +573,7 @@ fig <- ggplot(plot_df, aes(x = effect, y = estimate)) +
     y = "Difference in expected ER visits vs None",
     title = "Combined Effect of Storm Phases on Expected ER Visits",
     subtitle = sprintf(
-      "Two‑part model combined via g‑computation; %d bootstrap replicates (clustered by %s)",
+      "Two-part model combined via g-computation; %d bootstrap replicates (clustered by %s)",
       n_boot, ifelse(cluster == "zip","ZIP","ZIP×Year‑Month")
     ),
     caption = "Points: bootstrap means; bars: 95% percentile CIs"
@@ -592,7 +616,7 @@ dat_model[is.na(er_visits), er_visits := 0L]
 # Run (ZIP-clustered bootstrap)
 res <- two_part_gcomp_bootstrap(
   df        = dat_model,
-  n_boot    = 10,          # increase to 500–1000 for publication
+  n_boot    = 100,          # increase to 500–1000 for publication
   cluster   = "zip",
   seed      = 123
 )
