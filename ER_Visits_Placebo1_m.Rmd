@@ -1,3 +1,8 @@
+---
+output: html_document
+editor_options: 
+  chunk_output_type: console
+---
 ```{r}
 library(sf)
 library(dplyr)
@@ -245,7 +250,8 @@ run_one_randomization <- function(iter) {
       is_le6 ~ i(effect, ref = "None") | zip + year_month + dow,
       data   = dat,
       family = binomial("logit"),
-      cluster = ~ zip + year_month
+      cluster = ~ zip + year_month,
+      notes   = FALSE
     )
     outA <- get_effect_coefs(mA)[, `:=`(iter = iter, model = "logit")]
     out_list[["A"]] <- outA
@@ -256,7 +262,8 @@ run_one_randomization <- function(iter) {
     mB <- fepois(
       er_visits ~ i(effect, ref = "None") | zip + year_month + dow,
       data = d_gt6, 
-      cluster = ~ zip + year_month
+      cluster = ~ zip + year_month,
+      notes   = FALSE
     )
     outB <- get_effect_coefs(mB)[, `:=`(iter = iter, model = "poisson")]
     out_list[["B"]] <- outB
