@@ -1,0 +1,7 @@
+threshold,alignment,zip_days,zips,storms,overlapping_zip_days,source_missing_zero_days,nonpositive_population_guard_days
+34,shared,4029192,1046,39,10,1184584,79608
+34,local,4029192,1046,39,8,1184584,79608
+55,shared,4006080,1040,19,0,1180237,79608
+55,local,4006080,1040,19,0,1180237,79608
+64,shared,3755700,975,10,0,1092777,75328
+64,local,3755700,975,10,0,1092777,75328

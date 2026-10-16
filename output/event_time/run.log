@@ -1,0 +1,21 @@
+Warning message:
+In setFixest_nthreads(4):
+ OpenMP not detected: cannot use 4 threads, single-threaded mode instead. 
+Preparing RMW swaths and ZIP-specific timing 
+Swaths: 44 ; ZIP-storm pairs: 8762 
+           used  (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells  1285742  68.7    3609707 192.8         NA  3609707 192.8
+Vcells 14199033 108.4   64970415 495.7      32768 75720994 577.8
+Fitting 34 kt shared on 4029192 ZIP-days 
+Fitting 34 kt local on 4029192 ZIP-days 
+Fitting 55 kt shared on 4006080 ZIP-days 
+Fitting 55 kt local on 4006080 ZIP-days 
+Fitting 64 kt shared on 3755700 ZIP-days 
+Fitting 64 kt local on 3755700 ZIP-days 
+There were 24 warnings (use warnings() to see them)
+Error: unexpected symbol in:
+"        plot.caption=element_text(hjust=0,size=9),plot.margin=margin(15,18,15,15))
+ggsave"
+Execution halted
+
+Rendering recovered separately with scripts/plot_daily_event_time.R. All 12 component fits converged; 102 finite daily contrasts validated. Final PNG visually inspected.

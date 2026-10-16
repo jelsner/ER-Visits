@@ -1,0 +1,33 @@
+   threshold alignment  day_zero days_minus1_to_plus1 pre_8_days post_8_days
+       <int>    <char>     <num>                <num>      <num>       <num>
+1:        34    shared -1.451684           -0.4962344 0.31877674   0.3436808
+2:        34     local -1.023718           -0.4374402 0.18356711   0.4151838
+3:        55    shared -2.777920           -1.0733507 0.27683203   0.6072302
+4:        55     local -2.200942           -0.9146640 0.05574981   0.7777318
+5:        64    shared -3.714885           -1.2988590 0.49664685   1.0059251
+6:        64     local -2.592855           -0.9524031 0.23913107   1.1173048
+   trough_day trough_difference
+        <int>             <num>
+1:          0         -1.451684
+2:         -1         -1.039002
+3:          0         -2.777920
+4:          0         -2.200942
+5:          0         -3.714885
+6:          0         -2.592855
+   threshold alignment zip_days  zips storms overlapping_zip_days
+       <int>    <char>    <int> <int>  <int>                <int>
+1:        34    shared  4029192  1046     39                   10
+2:        34     local  4029192  1046     39                    8
+3:        55    shared  4006080  1040     19                    0
+4:        55     local  4006080  1040     19                    0
+5:        64    shared  3755700   975     10                    0
+6:        64     local  3755700   975     10                    0
+   source_missing_zero_days nonpositive_population_guard_days
+                      <int>                             <int>
+1:                  1184584                             79608
+2:                  1184584                             79608
+3:                  1180237                             79608
+4:                  1180237                             79608
+5:                  1092777                             75328
+6:                  1092777                             75328
+Saved daily event-time plot and estimates. 

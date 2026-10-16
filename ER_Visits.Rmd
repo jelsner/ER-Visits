@@ -1,11 +1,11 @@
 ---
-title: "Daily ER visits relative to storm effects"
+title: "Daily ER visits relative to the storm corridor"
 output: html_document
 editor_options:
   chunk_output_type: console
 ---
 
-## Create a storm effects model
+## Create a storm corridor model
 
 ```{r}
 library(sf)
