@@ -1,0 +1,3 @@
+threshold,alignment,zip_days,zips,storms,overlapping_zip_days,absent_interval_days,nonpositive_population_guard_days
+34,shared,4029192,1046,39,10,1184584,79608
+34,local,4029192,1046,39,8,1184584,79608

@@ -1,0 +1,13 @@
+           used (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells   729639 39.0    1368304  73.1         NA  1311962  70.1
+Vcells 11203409 85.5   45091068 344.1      32768 52796170 402.9
+15:46:59 Preparing threshold 34 
+15:47:09 Phase fit 34 ; 4029192 daily rows compressed to 1045879 cells 
+15:47:14 Phase fit and predictions took 5 seconds 
+15:47:14 Checking compressed model against original daily rows 
+15:47:28 Compression agrees with full data to 3.47e-12 
+15:47:35 Bootstrap 34 : 8 / 8 ; batch seconds 6.9 
+15:47:39 Daily fit 34 shared 
+15:47:59 Daily fit 34 local 
+15:48:17 Completed threshold 34 
+15:48:17 Completed all requested fits. Render with scripts/plot_suppression_figures.R 

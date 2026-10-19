@@ -1,106 +1,56 @@
-# Supplementary information: sensitivity to impact-date alignment
+# Supplementary information: corrected suppression and impact-date sensitivity
 
-![Figure S1. Daily ED utilization by impact-date alignment](../figs/FigS1_daily_event_time_alignment.png)
+## Confirmed suppression definition and prediction assumptions
 
-**Figure S1. Daily emergency department utilization by impact-date alignment.**
-Population-weighted differences in modeled expected emergency department (ED)
-visits per ZIP-day relative to non-storm conditions, estimated separately for
-each day from eight days before to eight days after the specified impact date.
-Panels show nested storm-intensity thresholds of ≥34, ≥55, and ≥64 kt. Blue
-circles use a common date for all exposed ZIP areas within each storm: the date
-of the first retained IBTrACS track segment whose radius-of-maximum-wind (RMW)
-buffer intersects Florida. Orange triangles use the date of closest approach
-to an interior representative point of each ZIP Code Tabulation Area (ZCTA).
-The shaded band marks day zero. Both alignments retain the same RMW-based
-exposure swaths and ZIP-area intersection rule. Models include ZIP,
-year-month, and day-of-week fixed effects and a population offset in the
-Poisson component. Predictions are standardized to the same ZIP-days with
-finite predictions under both alignment models within each panel and averaged
-using population weights. The available ED extract supports May-November
-analyses for 2005-2022, with 39, 19, and 10 contributing storms at the respective
-thresholds. Points are exploratory estimates; confidence intervals are not
-shown. The existing assumptions about suppressed counts and missing records
-are retained. Dates use UTC.
+The data provider confirmed that counts of one through five visits were suppressed. Zero-count ZIP-days were also absent from the extract. An absent ZIP-day was therefore treated as an interval-observed count between zero and five; reported counts of six or more were treated as observed. Absent records were not assigned an observed count of zero, and reported sixes were not labeled as suppressed.
 
-## Supplementary methods
+The logistic component modeled the probability of an absent (0–5 visit) ZIP-day, p. The count component modeled the conditional mean m among observed ZIP-days with at least six visits, using a Poisson working mean model. Combined expected visits were calculated as c p + (1-p)m. The central figures use c = 3.8 visits, David Hsu's estimate from comparison with county totals. The provider confirmed the interval 0–5; it did not establish this mean. Sensitivity analyses varied a common c across the full interval from zero to five. This assumes the suppressed-group mean is constant across ZIP-days and phases for each sensitivity scenario; these ranges are not identification bounds allowing phase-specific means to vary independently.
 
-We assessed sensitivity to impact-date alignment by replacing the three storm
-phase indicators with 17 daily event-time indicators, spanning days -8 through
-+8. ZIP-days outside the selected storms' event windows formed the reference
-category; day -1 was not the reference. Separate two-part models were fitted
-for each alignment and storm-intensity threshold.
+The count component includes ZIP, year-month, and day-of-week fixed effects and an annual ZIP population offset. The logistic component uses the same fixed effects. Population-weighted counterfactual predictions were averaged over ZIP-days with finite component predictions. As in the original pipeline, multiple reported rows within a ZIP-day were summed. The available extract supports May–November 2005–2022; the 2004 storm season is absent.
 
-ZIP-specific closest approach was calculated using the existing qualifying
-IBTrACS line segments whose RMW buffers intersect Florida. Each ZCTA's interior
-representative point was projected onto each retained segment for that storm.
-The location with the shortest projected distance was selected, and its time
-was interpolated linearly between successive track-fix timestamps. The UTC
-calendar date containing that time defined local day zero. This is a geographic
-timing proxy rather than an estimate of the time of maximum wind at a patient's
-location; the representative point is not population-weighted.
+## Figure 1: corrected phase estimates
 
-The logistic component modeled the probability of an ED count reported at the
-suppression threshold of six, and the Poisson component modeled counts above
-six. As in the existing analysis, combined predictions were calculated as
-`6p + (1-p)m`, where `p` is the predicted suppression probability and `m` is the
-predicted conditional count above six. This retains the assumed suppressed-group
-mean of six and the assignment of unmatched ZIP-days to zero. Annual ACS
-population estimates were interpolated linearly, with the nearest available
-estimate carried to years outside each ZCTA's available range. Nonpositive
-population values were set to one, following the existing pipeline.
+![Figure 1. Corrected phase estimates](../figs/Fig1_phase_effects_by_intensity.png)
 
-Overlapping event windows were resolved using the existing priority rule:
-Impact over Threat over Cleanup. Ties within a phase were resolved by choosing
-the event day closest to zero, followed by storm identifier. There were 10
-overlapping ZIP-days under shared-date alignment and eight under local-date
-alignment at ≥34 kt; no overlaps occurred at the higher thresholds. As in the
-existing threshold-specific analysis, windows of excluded lower-intensity
-storms could enter the reference category.
+**Figure 1. Phase-specific ED utilization around tropical cyclones under the confirmed suppression definition.** Population-weighted differences in expected emergency department (ED) visits per ZIP-day relative to non-storm conditions, by storm phase and nested storm-intensity threshold. The RMW-based exposure swaths, shared storm dates, and phase definitions are retained. Points use a suppressed-group mean of 3.8 visits. Blue bars show 95% percentile intervals from 200 resamples of entire ZIP histories, with both model components refitted on the same ZIP draw in each replicate. Orange ranges show sensitivity of the point estimates to a common suppressed-group mean of zero through five; they are not confidence intervals. Bootstrap intervals condition on the selected mean. The ZIP bootstrap retains the original inference design and does not resolve dependence across ZIPs affected by the same storm.
 
-The prediction population was restricted to rows with finite predictions from
-both model components under both alignments within each threshold. This
-restriction accommodates ZIP fixed effects dropped because of no variation
-in the suppression indicator. The standardization populations contained 667,
-663, and 625 ZIP areas at the respective thresholds. Threshold panels therefore
-do not represent an identical target population or an independent test of
-intensity differences. Joint uncertainty accounting for shared storm exposure
-has not yet been estimated for these exploratory curves.
+Differences in expected visits per ZIP-day, with 95% ZIP-bootstrap intervals in brackets:
 
-## Supplementary results
+| Threshold | Threat | Impact | Cleanup | Non-storm baseline |
+|---|---:|---:|---:|---:|
+| ≥34 kt | 0.29 [0.24, 0.35] | -1.50 [-1.65, -1.35] | 0.33 [0.28, 0.40] | 16.44 |
+| ≥55 kt | 0.27 [0.16, 0.40] | -2.86 [-3.12, -2.60] | 0.61 [0.47, 0.76] | 16.45 |
+| ≥64 kt | 0.51 [0.32, 0.68] | -3.96 [-4.28, -3.64] | 1.04 [0.86, 1.21] | 16.56 |
 
-The reduction in ED utilization around impact and the subsequent increase
-were evident under both alignments. Day-zero differences under shared-date
-alignment were -1.45, -2.78, and -3.71 expected visits per ZIP-day at ≥34, ≥55,
-and ≥64 kt, respectively. Corresponding estimates under ZIP-specific alignment
-were -1.02, -2.20, and -2.59, representing approximately 21-30% smaller
-day-zero reductions. The minimum under ZIP-specific alignment occurred on day
--1 at ≥34 kt and day zero at the two higher thresholds.
+## Figure S1: daily event-time sensitivity
 
-Equal-weight averages of the daily contrasts over days -1 through +1 remained
-negative under both alignments: -0.50 versus -0.44 visits per ZIP-day at ≥34 kt,
--1.07 versus -0.91 at ≥55 kt, and -1.30 versus -0.95 at ≥64 kt (shared versus
-ZIP-specific alignment). These averages summarize the daily estimates rather
-than coefficients from refitted three-day-window models. The comparison
-indicates that the exact day-zero magnitude is sensitive to temporal alignment,
-while the broader pattern persists descriptively. No formal test of differences
-between alignments is reported.
+![Figure S1. Daily event-time alignment](../figs/FigS1_daily_event_time_alignment.png)
 
-## Suggested main-text reference
+**Figure S1. Daily ED utilization by impact-date alignment under the confirmed suppression definition.** Daily differences in population-weighted expected ED visits per ZIP-day relative to non-storm conditions, from eight days before through eight days after the specified impact date. Panels show nested ≥34, ≥55, and ≥64 kt storm thresholds. Blue circles use a common date for all exposed ZIP areas within each storm: the date of the first retained IBTrACS track segment whose RMW buffer intersects Florida. Orange triangles use the date of closest approach to an interior representative point of each ZIP Code Tabulation Area. The vertical band marks day zero. Both alignments retain the same RMW swaths and ZIP-area intersection rule. Lines use a suppressed-group mean of 3.8; shading shows sensitivity to a common mean from zero through five. No sampling confidence intervals are shown in Figure S1. Dates use UTC.
 
-"An exploratory daily event-time analysis using ZIP-specific closest-approach
-dates yielded smaller day-zero reductions but retained the reduction around
-impact and the subsequent increase in ED utilization (figure S1)."
+The three phase indicators were replaced with 17 daily indicators spanning days -8 through +8. ZIP-days outside all selected storms' event windows were the reference; day -1 was not the reference. Separate models were fitted by threshold and alignment. For local timing, each ZIP area's interior representative point was projected onto retained qualifying track segments, the closest location was selected, and its timestamp was interpolated linearly between successive track fixes. This is a geographic timing proxy, not the time of maximum wind at individual patient locations or a population-weighted ZIP center.
 
-## Reproducibility
+Within each threshold, both alignment curves use the same ZIP-day prediction population. These populations contain 671, 667, 630 ZIP areas at ≥34, ≥55, and ≥64 kt, respectively. There are 39, 19, 10 contributing storms at those thresholds. Differences across threshold panels remain descriptive because their target populations differ and their storm samples are nested.
 
-- Analysis: `scripts/daily_event_time.R`
-- Figure rendering: `scripts/plot_daily_event_time.R`
-- Daily estimates: `output/event_time/daily_estimates.csv`
-- Timing summaries: `output/event_time/timing_summary.csv`
-- Sample audit: `output/event_time/sample_audit.csv`
-- ZIP-storm date comparison: `output/event_time/zip_storm_alignment.csv`
+Overlapping event windows follow the original Impact > Threat > Cleanup priority, with ties within a phase resolved by the event day closest to zero and then storm identifier. At ≥34 kt, ten ZIP-days overlap under shared-date alignment and eight under local-date alignment; higher thresholds have none. Windows of storms excluded by an intensity threshold can enter that threshold's reference category, retaining the original analysis design.
 
-Drafting checks before submission: confirm the ED date convention against UTC
-storm dates, reconcile the main manuscript's period and event counts with the
-available extract, confirm suppression/missing-row assumptions, and decide
-whether to add joint uncertainty intervals to figure S1.
+The following summaries use the central suppressed-group mean. Three-day values are equal-weight averages of daily estimates over days -1 through +1, not coefficients from a refitted three-day-window model.
+
+| Threshold | Shared date: day zero | ZIP-specific date: day zero | Shared date: three-day mean | ZIP-specific date: three-day mean |
+|---|---:|---:|---:|---:|
+| ≥34 kt | -1.50 | -1.07 | -0.52 | -0.46 |
+| ≥55 kt | -2.86 | -2.22 | -1.08 | -0.93 |
+| ≥64 kt | -3.96 | -2.69 | -1.37 | -1.02 |
+
+## Suggested Methods wording
+
+> Daily ZIP-code counts of one through five ED visits were suppressed by the data provider. Because zero-count ZIP-days were also absent, an absent ZIP-day represented an unknown count from zero to five. Reported counts of six or more were treated as observed. We modeled the probability of an absent record using logistic regression and modeled counts among observed records using a Poisson conditional-mean model. Combined expected visits used a suppressed-group mean of 3.8, estimated from comparison with county totals, with sensitivity analyses varying this common mean from zero to five.
+
+## Reproducibility and remaining author checks
+
+- Corrected fits and bootstrap: `scripts/regenerate_suppression_figures.R`.
+- Figure rendering: `scripts/plot_suppression_figures.R`.
+- Numerical outputs and audits: `output/suppression_corrected/`.
+- Figures made before the correction are archived in `figs/archive_before_suppression_correction_2026-10-18/`.
+
+Before submission, document the county-total calculation supporting 3.8 (including geographic and encounter coverage), verify ED date conventions against UTC storm dates, reconcile main-text years and event counts, and address the reviewers' storm-dependence concern. Earlier event-time CSVs in `output/event_time/` are retained as historical results and are superseded by the corrected outputs.

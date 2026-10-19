@@ -1,0 +1,3 @@
+threshold,alignment,zip_days,zips,storms,overlapping_zip_days,absent_interval_days,nonpositive_population_guard_days
+55,shared,4006080,1040,19,0,1180237,79608
+55,local,4006080,1040,19,0,1180237,79608

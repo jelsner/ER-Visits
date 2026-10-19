@@ -1,3 +1,5 @@
+> Historical analysis: these outputs use the superseded suppression interpretation. Use `output/suppression_corrected/` and `scripts/regenerate_suppression_figures.R` for the confirmed 0–5 definition. The former scripts are archived under `scripts/archive_before_suppression_correction_2026-10-18/`.
+
 # Daily event-time alignment diagnostic
 
 Run from the repository root:

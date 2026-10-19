@@ -1,0 +1,7 @@
+Central suppressed-group mean: 3.8; sensitivity range: 0 to 5.
+18 point-model components converged.
+600 successful ZIP-bootstrap replicates; both components refitted in every replicate.
+Nine phase contrasts and 102 daily contrasts are finite; sensitivity envelopes contain central estimates.
+Observed sixes retained; source minimum count is six.
+Maximum compressed/full coefficient discrepancy: 3.47133433109548e-12
+All corrected analysis and rendering entry points parse successfully.
