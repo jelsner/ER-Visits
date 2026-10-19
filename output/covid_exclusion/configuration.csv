@@ -1,0 +1,2 @@
+suppressed_lower,suppressed_upper,reported_min,central_mean,bootstrap_requested,workers,seed,start_year,end_year,include_daily
+0,5,6,3.8,200,4,20261018,2005,2019,FALSE

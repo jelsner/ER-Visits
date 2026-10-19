@@ -80,8 +80,13 @@ for(nm in names_to_keep) {
   src <- file.path("figs",nm);dest <- file.path(archive,nm)
   if(file.exists(src)&&!file.exists(dest)) stopifnot(file.copy(src,dest))
 }
-ggsave("figs/Fig1_phase_effects_by_intensity.png",p1,width=11.5,height=5.8,
-       dpi=300,device=ragg::agg_png,bg="white")
+if(file.exists("output/twoway_bootstrap/Figure1_estimates.csv")) {
+  # Preserve the selected primary inference when rerendering existing outputs.
+  source("scripts/plot_twoway_figure1.R",local=new.env(parent=environment()))
+} else {
+  ggsave("figs/Fig1_phase_effects_by_intensity.png",p1,width=11.5,height=5.8,
+         dpi=300,device=ragg::agg_png,bg="white")
+}
 ggsave("figs/FigS1_daily_event_time_alignment.png",pS,width=12.5,height=6.1,
        dpi=300,device=ragg::agg_png,bg="white")
 ggsave("figs/daily_event_time_alignment.png",pS,width=12.5,height=6.1,

@@ -1,0 +1,93 @@
+           used (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells   729660 39.0    1368304  73.1         NA  1312967  70.2
+Vcells 11203429 85.5   45091095 344.1      32768 52796190 402.9
+12:54:20 Preparing threshold 34 
+12:54:28 Phase fit 34 ; 3357660 daily rows compressed to 857785 cells 
+12:54:33 Phase fit and predictions took 4.3 seconds 
+12:54:33 Checking compressed model against original daily rows 
+12:54:44 Compression agrees with full data to 8.54e-13 
+12:54:50 Bootstrap 34 : 8 / 200 ; batch seconds 5.9 
+12:54:56 Bootstrap 34 : 16 / 200 ; batch seconds 5.2 
+12:55:01 Bootstrap 34 : 24 / 200 ; batch seconds 5.6 
+12:55:06 Bootstrap 34 : 32 / 200 ; batch seconds 5.2 
+12:55:12 Bootstrap 34 : 40 / 200 ; batch seconds 5.1 
+12:55:17 Bootstrap 34 : 48 / 200 ; batch seconds 5.1 
+12:55:22 Bootstrap 34 : 56 / 200 ; batch seconds 5.1 
+12:55:27 Bootstrap 34 : 64 / 200 ; batch seconds 5.3 
+12:55:32 Bootstrap 34 : 72 / 200 ; batch seconds 5.1 
+12:55:38 Bootstrap 34 : 80 / 200 ; batch seconds 5.5 
+12:55:43 Bootstrap 34 : 88 / 200 ; batch seconds 5.3 
+12:55:48 Bootstrap 34 : 96 / 200 ; batch seconds 5.4 
+12:55:54 Bootstrap 34 : 104 / 200 ; batch seconds 5.3 
+12:55:59 Bootstrap 34 : 112 / 200 ; batch seconds 5.3 
+12:56:04 Bootstrap 34 : 120 / 200 ; batch seconds 5.3 
+12:56:10 Bootstrap 34 : 128 / 200 ; batch seconds 5.2 
+12:56:15 Bootstrap 34 : 136 / 200 ; batch seconds 5.3 
+12:56:20 Bootstrap 34 : 144 / 200 ; batch seconds 5.3 
+12:56:25 Bootstrap 34 : 152 / 200 ; batch seconds 5.3 
+12:56:31 Bootstrap 34 : 160 / 200 ; batch seconds 5.4 
+12:56:36 Bootstrap 34 : 168 / 200 ; batch seconds 5.3 
+12:56:41 Bootstrap 34 : 176 / 200 ; batch seconds 5.1 
+12:56:47 Bootstrap 34 : 184 / 200 ; batch seconds 5.4 
+12:56:52 Bootstrap 34 : 192 / 200 ; batch seconds 5.4 
+12:56:57 Bootstrap 34 : 200 / 200 ; batch seconds 5.2 
+12:56:57 Completed phase-only threshold 34 
+12:56:57 Preparing threshold 55 
+12:57:05 Phase fit 55 ; 3338400 daily rows compressed to 793025 cells 
+12:57:08 Phase fit and predictions took 3.7 seconds 
+12:57:13 Bootstrap 55 : 8 / 200 ; batch seconds 4.8 
+12:57:18 Bootstrap 55 : 16 / 200 ; batch seconds 4.8 
+12:57:23 Bootstrap 55 : 24 / 200 ; batch seconds 4.8 
+12:57:28 Bootstrap 55 : 32 / 200 ; batch seconds 4.8 
+12:57:33 Bootstrap 55 : 40 / 200 ; batch seconds 4.8 
+12:57:37 Bootstrap 55 : 48 / 200 ; batch seconds 4.8 
+12:57:42 Bootstrap 55 : 56 / 200 ; batch seconds 5 
+12:57:47 Bootstrap 55 : 64 / 200 ; batch seconds 4.9 
+12:57:52 Bootstrap 55 : 72 / 200 ; batch seconds 4.7 
+12:57:57 Bootstrap 55 : 80 / 200 ; batch seconds 4.7 
+12:58:01 Bootstrap 55 : 88 / 200 ; batch seconds 4.8 
+12:58:06 Bootstrap 55 : 96 / 200 ; batch seconds 4.7 
+12:58:11 Bootstrap 55 : 104 / 200 ; batch seconds 4.7 
+12:58:15 Bootstrap 55 : 112 / 200 ; batch seconds 4.8 
+12:58:20 Bootstrap 55 : 120 / 200 ; batch seconds 4.8 
+12:58:25 Bootstrap 55 : 128 / 200 ; batch seconds 4.8 
+12:58:30 Bootstrap 55 : 136 / 200 ; batch seconds 4.7 
+12:58:34 Bootstrap 55 : 144 / 200 ; batch seconds 4.7 
+12:58:39 Bootstrap 55 : 152 / 200 ; batch seconds 4.8 
+12:58:44 Bootstrap 55 : 160 / 200 ; batch seconds 4.6 
+12:58:49 Bootstrap 55 : 168 / 200 ; batch seconds 4.7 
+12:58:53 Bootstrap 55 : 176 / 200 ; batch seconds 4.7 
+12:58:58 Bootstrap 55 : 184 / 200 ; batch seconds 4.7 
+12:59:03 Bootstrap 55 : 192 / 200 ; batch seconds 4.6 
+12:59:07 Bootstrap 55 : 200 / 200 ; batch seconds 4.6 
+12:59:07 Completed phase-only threshold 55 
+12:59:07 Preparing threshold 64 
+12:59:14 Phase fit 64 ; 3129750 daily rows compressed to 727429 cells 
+12:59:18 Phase fit and predictions took 3.6 seconds 
+12:59:22 Bootstrap 64 : 8 / 200 ; batch seconds 4.4 
+12:59:26 Bootstrap 64 : 16 / 200 ; batch seconds 4.5 
+12:59:31 Bootstrap 64 : 24 / 200 ; batch seconds 4.4 
+12:59:35 Bootstrap 64 : 32 / 200 ; batch seconds 4.4 
+12:59:40 Bootstrap 64 : 40 / 200 ; batch seconds 4.4 
+12:59:44 Bootstrap 64 : 48 / 200 ; batch seconds 4.5 
+12:59:49 Bootstrap 64 : 56 / 200 ; batch seconds 4.5 
+12:59:53 Bootstrap 64 : 64 / 200 ; batch seconds 4.3 
+12:59:57 Bootstrap 64 : 72 / 200 ; batch seconds 4.3 
+13:00:02 Bootstrap 64 : 80 / 200 ; batch seconds 4.4 
+13:00:06 Bootstrap 64 : 88 / 200 ; batch seconds 4.3 
+13:00:10 Bootstrap 64 : 96 / 200 ; batch seconds 4.6 
+13:00:15 Bootstrap 64 : 104 / 200 ; batch seconds 4.4 
+13:00:19 Bootstrap 64 : 112 / 200 ; batch seconds 4.4 
+13:00:24 Bootstrap 64 : 120 / 200 ; batch seconds 4.5 
+13:00:28 Bootstrap 64 : 128 / 200 ; batch seconds 4.4 
+13:00:32 Bootstrap 64 : 136 / 200 ; batch seconds 4.3 
+13:00:37 Bootstrap 64 : 144 / 200 ; batch seconds 4.4 
+13:00:41 Bootstrap 64 : 152 / 200 ; batch seconds 4.5 
+13:00:46 Bootstrap 64 : 160 / 200 ; batch seconds 4.3 
+13:00:50 Bootstrap 64 : 168 / 200 ; batch seconds 4.4 
+13:00:54 Bootstrap 64 : 176 / 200 ; batch seconds 4.4 
+13:00:59 Bootstrap 64 : 184 / 200 ; batch seconds 4.4 
+13:01:03 Bootstrap 64 : 192 / 200 ; batch seconds 4.5 
+13:01:08 Bootstrap 64 : 200 / 200 ; batch seconds 4.4 
+13:01:08 Completed phase-only threshold 64 
+13:01:08 Completed all requested fits. Render with scripts/plot_suppression_figures.R 

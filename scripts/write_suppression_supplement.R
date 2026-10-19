@@ -1,7 +1,10 @@
 suppressPackageStartupMessages(library(data.table))
 out <- "output/suppression_corrected"
 cfg <- fread(file.path(out,"configuration.csv")); mm <- cfg$central_mean[1]
-phase <- fread(file.path(out,"Figure1_estimates.csv"))
+two_way <- file.exists("output/twoway_bootstrap/Figure1_estimates.csv")
+phase <- fread(if(two_way) "output/twoway_bootstrap/Figure1_estimates.csv" else
+                 file.path(out,"Figure1_estimates.csv"))
+if(two_way) stopifnot(all(phase$mean_suppressed==mm))
 daily <- fread(file.path(out,"FigureS1_estimates.csv"))
 timing <- fread(file.path(out,"timing_summary.csv"))
 audit <- rbindlist(lapply(c(34,55,64),function(t)
@@ -22,6 +25,18 @@ timing_rows <- vapply(c(34,55,64),function(t) {
 support <- unique(daily[,.(threshold,standardization_zips)])
 setorder(support,threshold)
 events <- audit[alignment=="shared",storms]
+figure1_caption <- if(two_way) sprintf(paste0(
+  "**Figure 1. Phase-specific ED utilization around tropical cyclones with two-way ZIP-and-season inference.** ",
+  "Population-weighted differences in expected ED visits per ZIP-day relative to non-storm conditions, by phase and nested intensity threshold. ",
+  "The RMW swaths, shared storm dates, point estimates, and suppressed-group mean of %s are retained. ",
+  "Blue bars show 95%% percentile intervals from 999 independent resamples of ZIPs and the 18 calendar-year hurricane seasons. ",
+  "Both model components use the same product of ZIP and season multiplicities; combined predictions are re-averaged over the resampled population. ",
+  "Intervals use estimable draws; valid counts at ≥34, ≥55 and ≥64 kt are %s, respectively. ",
+  "Failed/non-estimable draws are recorded and not silently replaced. Orange ranges show sensitivity to a common suppressed-group mean from zero to five and are not confidence intervals. ",
+  "The season blocks retain shared storm shocks across ZIPs and days, including multiple storms within a year. ",
+  "The small number of independent hurricane seasons still limits inference."),mm,
+  paste(phase[,unique(n_boot),by=threshold][order(threshold)]$V1,collapse=", ")) else
+  sprintf("**Figure 1. Phase-specific ED utilization around tropical cyclones under the confirmed suppression definition.** Population-weighted differences in expected ED visits per ZIP-day relative to non-storm conditions, by storm phase and nested storm-intensity threshold. The RMW-based exposure swaths, shared storm dates, and phase definitions are retained. Points use a suppressed-group mean of %s visits. Blue bars show 95%% percentile intervals from 200 resamples of entire ZIP histories, with both model components refitted on the same ZIP draw in each replicate. Orange ranges show sensitivity of the point estimates to a common suppressed-group mean of zero through five; they are not confidence intervals. Bootstrap intervals condition on the selected mean. The ZIP bootstrap retains the original inference design and does not resolve dependence across ZIPs affected by the same storm.",mm)
 text <- c(
 "# Supplementary information: corrected suppression and impact-date sensitivity",
 "",
@@ -37,9 +52,10 @@ sprintf("The logistic component modeled the probability of an absent (0–5 visi
 "",
 "![Figure 1. Corrected phase estimates](../figs/Fig1_phase_effects_by_intensity.png)",
 "",
-sprintf("**Figure 1. Phase-specific ED utilization around tropical cyclones under the confirmed suppression definition.** Population-weighted differences in expected emergency department (ED) visits per ZIP-day relative to non-storm conditions, by storm phase and nested storm-intensity threshold. The RMW-based exposure swaths, shared storm dates, and phase definitions are retained. Points use a suppressed-group mean of %s visits. Blue bars show 95%% percentile intervals from 200 resamples of entire ZIP histories, with both model components refitted on the same ZIP draw in each replicate. Orange ranges show sensitivity of the point estimates to a common suppressed-group mean of zero through five; they are not confidence intervals. Bootstrap intervals condition on the selected mean. The ZIP bootstrap retains the original inference design and does not resolve dependence across ZIPs affected by the same storm.",mm),
+figure1_caption,
 "",
-"Differences in expected visits per ZIP-day, with 95% ZIP-bootstrap intervals in brackets:",
+if(two_way) "Differences in expected visits per ZIP-day, with 95% two-way ZIP-and-season bootstrap intervals in brackets:" else
+  "Differences in expected visits per ZIP-day, with 95% ZIP-bootstrap intervals in brackets:",
 "",
 "| Threshold | Threat | Impact | Cleanup | Non-storm baseline |",
 "|---|---:|---:|---:|---:|",
@@ -72,9 +88,11 @@ sprintf("> Daily ZIP-code counts of one through five ED visits were suppressed b
 "- Corrected fits and bootstrap: `scripts/regenerate_suppression_figures.R`.",
 "- Figure rendering: `scripts/plot_suppression_figures.R`.",
 "- Numerical outputs and audits: `output/suppression_corrected/`.",
+if(two_way) "- Primary Figure 1 inference: `output/twoway_bootstrap/`; rendering: `scripts/plot_twoway_figure1.R`." else NULL,
 "- Figures made before the correction are archived in `figs/archive_before_suppression_correction_2026-10-18/`.",
 "",
-"Before submission, document the county-total calculation supporting 3.8 (including geographic and encounter coverage), verify ED date conventions against UTC storm dates, reconcile main-text years and event counts, and address the reviewers' storm-dependence concern. Earlier event-time CSVs in `output/event_time/` are retained as historical results and are superseded by the corrected outputs."
+if(two_way) "Before submission, document the county-total calculation supporting 3.8, verify ED date conventions, reconcile main-text years and event counts, and acknowledge the limited independent hurricane seasons. Leave-one-storm-out and leave-one-season-out influence checks for ≥34 kt are available in output/leave_one_out_34/README.md; higher-threshold influence checks have not been run. Historical ZIP-only intervals are retained in output/suppression_corrected/; the primary Figure 1 uses output/twoway_bootstrap/." else
+  "Before submission, document the county-total calculation supporting 3.8 (including geographic and encounter coverage), verify ED date conventions against UTC storm dates, reconcile main-text years and event counts, and address the reviewers' storm-dependence concern. Earlier event-time CSVs in `output/event_time/` are retained as historical results and are superseded by the corrected outputs."
 )
 writeLines(text,"manuscript/Supplementary_event_time.md")
 writeLines(c("# Corrected suppression figures", "",
@@ -85,7 +103,8 @@ sprintf("Central suppressed-group mean: %s. Sensitivity: common mean from 0 to 5
 "Rscript scripts/plot_suppression_figures.R","Rscript scripts/write_suppression_supplement.R","```","",
 "The first command resumes saved ZIP-bootstrap replicates. To change the central mean without refitting, change central_mean in configuration.csv and rerun the final two commands; every output includes results for means 0, 2.5, 3.8, and 5. Bootstrap replicates store the linear components needed for any common mean.","",
 "Model fits use sufficient-statistic compression within identical ZIP/year-month/day-of-week/event cells. compression_validation.csv compares the compressed model with the full daily-data fit. All absent outcomes remain NA in the model data; observed sixes enter the count component.","",
-"Figure 1 has 200 ZIP-cluster bootstrap replicates per threshold. These retain the original uncertainty design, not storm-cluster inference. Figure S1 has daily point estimates and suppressed-mean sensitivity shading, with no confidence bands.","",
+if(two_way) "The primary Figure 1 now uses 999 attempted two-way ZIP-and-season bootstrap draws per threshold; see output/twoway_bootstrap/ for the primary intervals, diagnostics and reproduction command. The 200-draw ZIP-only intervals in this directory are retained as historical results. Figure S1 remains a daily point-estimate and suppressed-mean sensitivity plot without confidence bands." else
+  "Figure 1 has 200 ZIP-cluster bootstrap replicates per threshold. These retain the original uncertainty design, not storm-cluster inference. Figure S1 has daily point estimates and suppressed-mean sensitivity shading, with no confidence bands.","",
 "The RMW geometry, date definitions, population series, and nested threshold design are reused from the earlier analysis. Both corrected figures use the available May–November 2005–2022 ED record.","",
 "See manuscript/Supplementary_event_time.md for captions, methods, numerical results, and limitations."),file.path(out,"README.md"))
 cat("Updated supplementary text and corrected-output README.\n")

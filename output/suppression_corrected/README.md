@@ -16,7 +16,7 @@ The first command resumes saved ZIP-bootstrap replicates. To change the central 
 
 Model fits use sufficient-statistic compression within identical ZIP/year-month/day-of-week/event cells. compression_validation.csv compares the compressed model with the full daily-data fit. All absent outcomes remain NA in the model data; observed sixes enter the count component.
 
-Figure 1 has 200 ZIP-cluster bootstrap replicates per threshold. These retain the original uncertainty design, not storm-cluster inference. Figure S1 has daily point estimates and suppressed-mean sensitivity shading, with no confidence bands.
+The primary Figure 1 now uses 999 attempted two-way ZIP-and-season bootstrap draws per threshold; see output/twoway_bootstrap/ for the primary intervals, diagnostics and reproduction command. The 200-draw ZIP-only intervals in this directory are retained as historical results. Figure S1 remains a daily point-estimate and suppressed-mean sensitivity plot without confidence bands.
 
 The RMW geometry, date definitions, population series, and nested threshold design are reused from the earlier analysis. Both corrected figures use the available May–November 2005–2022 ED record.
 

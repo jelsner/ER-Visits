@@ -1,0 +1,2 @@
+threshold,alignment,start_year,end_year,zip_days,zips,storms,overlapping_zip_days,absent_interval_days,nonpositive_population_guard_days
+55,shared,2005,2019,3338400,1040,12,0,999707,65270

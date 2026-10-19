@@ -1,0 +1,4 @@
+Six point-model components converged; all fixed-effect month labels fall in 2005–2019.
+600 successful ZIP-bootstrap replicates; no duplicate replicate/threshold/phase rows.
+Nine finite phase contrasts, with finite bootstrap intervals.
+Suppression definition, central mean, exposure and model structure retained.

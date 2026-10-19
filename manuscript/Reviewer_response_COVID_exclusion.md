@@ -1,0 +1,3 @@
+> Inference update: the confidence-interval statements below refer to the earlier ZIP-only analysis. Figure 1 now uses two-way ZIP-and-season intervals. The COVID-exclusion interval comparison has not yet been rerun with that design; point-estimate comparisons remain applicable.
+
+We refitted the same phase models after excluding 2020–2022 (retaining 2005–2019), and the Impact-phase reductions and Cleanup-phase increases persisted across all thresholds, with larger magnitudes than in the full-period analysis at ≥55 and ≥64 kt. Threat-phase estimates were attenuated (e.g., +0.08 versus +0.29 visits per ZIP-day at ≥34 kt), and their 95% ZIP-bootstrap intervals included zero at ≥55 and ≥64 kt, indicating greater sensitivity of the pre-impact association to the study period.

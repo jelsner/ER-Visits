@@ -1,6 +1,8 @@
 # Confirmed suppression: absent ZIP-days are interval-observed at 0--5;
 # reported counts >=6 are exact. Run from the repository root.
 # Options: --bootstrap=200 --workers=4 --mean=3.8 --thresholds=34,55,64
+# Period sensitivity: --end-year=2019 --output=output/covid_exclusion --daily=false
+# Two-way inference: --cluster=zip_season --output=output/twoway_bootstrap --daily=false
 suppressPackageStartupMessages({library(data.table);library(fixest);library(lubridate)})
 setDTthreads(1); setFixest_nthreads(1)
 args <- commandArgs(trailingOnly=TRUE)
@@ -11,14 +13,32 @@ option <- function(name,default) {
 B <- as.integer(option("bootstrap","200")); workers <- as.integer(option("workers","4"))
 central_mean <- as.numeric(option("mean","3.8"))
 thresholds <- as.integer(strsplit(option("thresholds","34,55,64"),",")[[1]])
-stopifnot(B>=0,workers>=1,central_mean>=0,central_mean<=5)
-out <- "output/suppression_corrected"
+end_year <- as.integer(option("end-year","2022"))
+include_daily <- identical(tolower(option("daily","true")),"true")
+bootstrap_mode <- option("cluster","zip")
+stopifnot(B>=0,workers>=1,central_mean>=0,central_mean<=5,
+          end_year>=2005,end_year<=2022,bootstrap_mode%in%c("zip","zip_season"))
+out <- option("output","output/suppression_corrected")
+if(end_year!=2022 && out=="output/suppression_corrected")
+  stop("Use a separate --output directory for period sensitivity analyses.")
+if(bootstrap_mode!="zip" && out=="output/suppression_corrected")
+  stop("Use a separate --output directory for a different bootstrap design.")
 dir.create(out,recursive=TRUE,showWarnings=FALSE)
+prior_config <- file.path(out,"configuration.csv")
+if(file.exists(prior_config) && length(list.files(out,pattern="^bootstrap_.*csv$"))) {
+  prior <- fread(prior_config)
+  prior_mode <- if("bootstrap_mode"%in%names(prior)) prior$bootstrap_mode[1] else "zip"
+  prior_end <- if("end_year"%in%names(prior)) prior$end_year[1] else 2022L
+  if(prior_mode!=bootstrap_mode || prior_end!=end_year)
+    stop("Cached draws have a different clustering design or study period; use a fresh output directory.")
+}
 note <- function(...) {cat(format(Sys.time(),"%H:%M:%S"),...,"\n");flush.console()}
 capture.output(sessionInfo(),file=file.path(out,"session_info.txt"))
 fwrite(data.table(suppressed_lower=0,suppressed_upper=5,reported_min=6,
                  central_mean=central_mean,bootstrap_requested=B,workers=workers,
-                 seed=20261018),file.path(out,"configuration.csv"))
+                 seed=20261018,start_year=2005,end_year=end_year,
+                 include_daily=include_daily,bootstrap_mode=bootstrap_mode),
+       file.path(out,"configuration.csv"))
 
 # Reuse the previously constructed, unchanged RMW/ZIP geometry and date pairs.
 pairs <- fread("output/event_time/zip_storm_alignment.csv",colClasses=c(zip="character"))
@@ -65,10 +85,18 @@ aggregate_cells <- function(dat) {
   z[,event:=factor(event,levels=levels(dat$event))]
   z
 }
-fit_pair <- function(g,multiplicity=NULL) {
+fit_pair <- function(g,multiplicity=NULL,season_multiplicity=NULL) {
   d <- copy(g)
   if(is.null(multiplicity)) d[,mult:=1] else {
     d[,mult:=unname(multiplicity[zip])];d <- d[mult>0]
+  }
+  if(!is.null(season_multiplicity)) {
+    d[,season_mult:=unname(season_multiplicity[substr(year_month,1,4)])]
+    d[,mult:=mult*season_mult];d <- d[mult>0]
+    stopifnot(all(is.finite(d$mult)),all(d$mult>0),
+              abs(sum(d$n*d$mult)-sum(g$n))<1e-5)
+    if(!all(levels(g$event)%in%as.character(unique(d$event))))
+      stop("non_estimable_missing_phase_in_selected_seasons")
   }
   d[,`:=`(wa=n*mult,wb=no*mult)]
   a <- suppressWarnings(feglm(suppressed_fraction ~ i(event,ref="None") |
@@ -116,7 +144,8 @@ compact_model <- function(m) list(
 for(thr in thresholds) {
   note("Preparing threshold",thr)
   pp <- pairs[Wind>=thr];zz <- sort(unique(pp$zip))
-  dates <- as.IDate(seq(as.Date("2005-01-01"),as.Date("2022-12-31"),by="day"))
+  dates <- as.IDate(seq(as.Date("2005-01-01"),
+                       as.Date(sprintf("%s-12-31",end_year)),by="day"))
   dates <- dates[month(dates)%in%5:11]
   base <- merge(CJ(zip=zz,date=dates),ed,by=c("zip","date"),all.x=TRUE)
   # Never replace these unknown counts with zero in the model data.
@@ -169,14 +198,24 @@ for(thr in thresholds) {
   existing <- if(file.exists(boot_file)) fread(boot_file) else data.table()
   completed <- if(nrow(existing)) unique(existing$replicate) else integer()
   todo <- setdiff(seq_len(B),completed)
+  seasons <- as.character(2005:end_year)
   one_boot <- function(i) {
+    season_counts <- NULL
     tryCatch({
       set.seed(20261018+thr*1000+i)
       mult <- table(factor(sample(zz,length(zz),replace=TRUE),levels=zz))
-      fit <- fit_pair(g,mult)
+      sm <- NULL
+      if(bootstrap_mode=="zip_season") {
+        sm <- table(factor(sample(seasons,length(seasons),replace=TRUE),levels=seasons))
+        season_counts <- paste(as.integer(sm),collapse=",")
+      }
+      fit <- fit_pair(g,mult,sm)
       v <- gcomp(fit,c("Threat","Impact","Cleanup"))
-      v[,`:=`(replicate=i,threshold=thr)];v
-    },error=function(e) data.table(replicate=i,error=conditionMessage(e),threshold=thr))
+      v[,`:=`(replicate=i,threshold=thr)]
+      if(bootstrap_mode=="zip_season") v[,season_multiplicities:=season_counts]
+      v
+    },error=function(e) data.table(replicate=i,error=conditionMessage(e),threshold=thr,
+                                   season_multiplicities=season_counts))
   }
   if(length(todo)) for(start in seq(1,length(todo),by=workers*2)) {
     ids <- todo[start:min(length(todo),start+workers*2-1)]
@@ -189,6 +228,18 @@ for(thr in thresholds) {
          "; batch seconds",round(proc.time()[3]-started,1))
   }
   rm(g);gc()
+
+  if(!include_daily) {
+    audit <- data.table(threshold=thr,alignment="shared",start_year=2005,
+      end_year=end_year,zip_days=nrow(base),zips=uniqueN(base$zip),
+      storms=uniqueN(calendars$shared$calendar[date%in%dates,SID]),
+      overlapping_zip_days=nrow(calendars$shared$overlaps[date%in%dates]),
+      absent_interval_days=sum(base$suppressed),nonpositive_population_guard_days=npop)
+    fwrite(audit,sprintf("%s/sample_audit_%s.csv",out,thr))
+    rm(base);gc()
+    note("Completed phase-only threshold",thr)
+    next
+  }
 
   daily_models <- list();daily_counts <- list()
   for(align in c("shared","local")) {
@@ -230,4 +281,7 @@ for(thr in thresholds) {
   rm(base,daily_models,mm,dd);gc()
   note("Completed threshold",thr)
 }
-note("Completed all requested fits. Render with scripts/plot_suppression_figures.R")
+if(bootstrap_mode=="zip_season")
+  note("Completed all requested fits. Render with scripts/plot_twoway_figure1.R") else
+if(include_daily) note("Completed all requested fits. Render with scripts/plot_suppression_figures.R") else
+  note("Completed phase-only fits; summarize from the selected output directory.")

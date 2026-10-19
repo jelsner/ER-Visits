@@ -1,0 +1,6 @@
+All 2997 bootstrap draws succeeded; six point-model components converged.
+Every draw independently selects 18 seasons with replacement; product weights checked against explicitly duplicated clusters.
+All nine point estimates are unchanged to numerical precision.
+All Impact intervals exclude zero below; all Threat intervals include zero; only the >=64 kt Cleanup interval excludes zero.
+Existing plotting entry point retains 999-draw two-way intervals.
+Exposure data, ED data, population inputs and Figure S1 are unchanged; archived Figure 1 matches its original fingerprint.

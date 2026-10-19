@@ -12,15 +12,15 @@ The count component includes ZIP, year-month, and day-of-week fixed effects and 
 
 ![Figure 1. Corrected phase estimates](../figs/Fig1_phase_effects_by_intensity.png)
 
-**Figure 1. Phase-specific ED utilization around tropical cyclones under the confirmed suppression definition.** Population-weighted differences in expected emergency department (ED) visits per ZIP-day relative to non-storm conditions, by storm phase and nested storm-intensity threshold. The RMW-based exposure swaths, shared storm dates, and phase definitions are retained. Points use a suppressed-group mean of 3.8 visits. Blue bars show 95% percentile intervals from 200 resamples of entire ZIP histories, with both model components refitted on the same ZIP draw in each replicate. Orange ranges show sensitivity of the point estimates to a common suppressed-group mean of zero through five; they are not confidence intervals. Bootstrap intervals condition on the selected mean. The ZIP bootstrap retains the original inference design and does not resolve dependence across ZIPs affected by the same storm.
+**Figure 1. Phase-specific ED utilization around tropical cyclones with two-way ZIP-and-season inference.** Population-weighted differences in expected ED visits per ZIP-day relative to non-storm conditions, by phase and nested intensity threshold. The RMW swaths, shared storm dates, point estimates, and suppressed-group mean of 3.8 are retained. Blue bars show 95% percentile intervals from 999 independent resamples of ZIPs and the 18 calendar-year hurricane seasons. Both model components use the same product of ZIP and season multiplicities; combined predictions are re-averaged over the resampled population. Intervals use estimable draws; valid counts at ≥34, ≥55 and ≥64 kt are 999, 999, 999, respectively. Failed/non-estimable draws are recorded and not silently replaced. Orange ranges show sensitivity to a common suppressed-group mean from zero to five and are not confidence intervals. The season blocks retain shared storm shocks across ZIPs and days, including multiple storms within a year. The small number of independent hurricane seasons still limits inference.
 
-Differences in expected visits per ZIP-day, with 95% ZIP-bootstrap intervals in brackets:
+Differences in expected visits per ZIP-day, with 95% two-way ZIP-and-season bootstrap intervals in brackets:
 
 | Threshold | Threat | Impact | Cleanup | Non-storm baseline |
 |---|---:|---:|---:|---:|
-| ≥34 kt | 0.29 [0.24, 0.35] | -1.50 [-1.65, -1.35] | 0.33 [0.28, 0.40] | 16.44 |
-| ≥55 kt | 0.27 [0.16, 0.40] | -2.86 [-3.12, -2.60] | 0.61 [0.47, 0.76] | 16.45 |
-| ≥64 kt | 0.51 [0.32, 0.68] | -3.96 [-4.28, -3.64] | 1.04 [0.86, 1.21] | 16.56 |
+| ≥34 kt | 0.29 [-0.14, 0.63] | -1.50 [-2.33, -0.84] | 0.33 [-0.01, 0.58] | 16.44 |
+| ≥55 kt | 0.27 [-0.22, 0.59] | -2.86 [-4.59, -1.11] | 0.61 [-0.07, 1.36] | 16.45 |
+| ≥64 kt | 0.51 [-0.41, 0.84] | -3.96 [-7.96, -2.02] | 1.04 [0.14, 2.36] | 16.56 |
 
 ## Figure S1: daily event-time sensitivity
 
@@ -51,6 +51,7 @@ The following summaries use the central suppressed-group mean. Three-day values 
 - Corrected fits and bootstrap: `scripts/regenerate_suppression_figures.R`.
 - Figure rendering: `scripts/plot_suppression_figures.R`.
 - Numerical outputs and audits: `output/suppression_corrected/`.
+- Primary Figure 1 inference: `output/twoway_bootstrap/`; rendering: `scripts/plot_twoway_figure1.R`.
 - Figures made before the correction are archived in `figs/archive_before_suppression_correction_2026-10-18/`.
 
-Before submission, document the county-total calculation supporting 3.8 (including geographic and encounter coverage), verify ED date conventions against UTC storm dates, reconcile main-text years and event counts, and address the reviewers' storm-dependence concern. Earlier event-time CSVs in `output/event_time/` are retained as historical results and are superseded by the corrected outputs.
+Before submission, document the county-total calculation supporting 3.8, verify ED date conventions, reconcile main-text years and event counts, and acknowledge the limited independent hurricane seasons. Leave-one-storm-out and leave-one-season-out influence checks for ≥34 kt are available in output/leave_one_out_34/README.md; higher-threshold influence checks have not been run. Historical ZIP-only intervals are retained in output/suppression_corrected/; the primary Figure 1 uses output/twoway_bootstrap/.

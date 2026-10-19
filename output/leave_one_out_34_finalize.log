@@ -1,0 +1,24 @@
+                 design   event     minimum    maximum minimum_omission
+                 <char>  <char>       <num>      <num>           <char>
+1:  Leave one storm out  Threat  0.14792347  0.3379453        ALEX 2022
+2:  Leave one storm out  Impact -1.79113097 -1.2035744        ALEX 2022
+3:  Leave one storm out Cleanup  0.24997976  0.3666511       WILMA 2005
+4: Leave one season out  Threat  0.04472505  0.3303085             2022
+5: Leave one season out  Impact -1.67806207 -1.1672279             2016
+6: Leave one season out Cleanup  0.23122160  0.3702942             2005
+   maximum_omission full_estimate largest_absolute_change most_influential
+             <char>         <num>                   <num>           <char>
+1:       TAMMY 2005     0.2947833              0.14685980        ALEX 2022
+2:        IRMA 2017    -1.4962900              0.29484100        ALEX 2022
+3:         FAY 2008     0.3334001              0.08342037       WILMA 2005
+4:             2005     0.2947833              0.25005822             2022
+5:             2017    -1.4962900              0.32906209             2017
+6:             2006     0.3334001              0.10217853             2005
+   all_same_sign  fits
+          <lgcl> <int>
+1:          TRUE    39
+2:          TRUE    39
+3:          TRUE    39
+4:          TRUE    18
+5:          TRUE    18
+6:          TRUE    18

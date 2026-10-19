@@ -1,0 +1,17 @@
+Key: <threshold>
+   threshold   event difference        ci_lo      ci_hi n_boot
+       <int>  <fctr>      <num>        <num>      <num>  <int>
+1:        34 Cleanup  0.3334001 -0.006422068  0.5820145    999
+2:        34  Impact -1.4962900 -2.329997778 -0.8375274    999
+3:        34  Threat  0.2947833 -0.139857888  0.6282330    999
+4:        55 Cleanup  0.6140989 -0.066484550  1.3582942    999
+5:        55  Impact -2.8560696 -4.589958656 -1.1112239    999
+6:        55  Threat  0.2729149 -0.224495832  0.5941544    999
+7:        64 Cleanup  1.0404768  0.144462451  2.3642534    999
+8:        64  Impact -3.9599300 -7.963140113 -2.0245261    999
+9:        64  Threat  0.5087730 -0.411254188  0.8386605    999
+   threshold attempted valid missing_phase other_failures
+       <int>     <int> <int>         <int>          <int>
+1:        34       999   999             0              0
+2:        55       999   999             0              0
+3:        64       999   999             0              0

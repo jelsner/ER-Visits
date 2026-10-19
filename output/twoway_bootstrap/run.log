@@ -1,0 +1,220 @@
+           used (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells   729668 39.0    1368304  73.1         NA  1313272  70.2
+Vcells 11203440 85.5   45091111 344.1      32768 52796201 402.9
+13:37:59 Preparing threshold 34 
+13:38:08 Phase fit 34 ; 4029192 daily rows compressed to 1045879 cells 
+13:38:13 Phase fit and predictions took 4.9 seconds 
+13:38:13 Checking compressed model against original daily rows 
+13:38:27 Compression agrees with full data to 3.47e-12 
+13:38:32 Bootstrap 34 : 8 / 999 ; batch seconds 5.1 
+13:38:36 Bootstrap 34 : 16 / 999 ; batch seconds 4.2 
+13:38:41 Bootstrap 34 : 24 / 999 ; batch seconds 4.4 
+13:38:45 Bootstrap 34 : 32 / 999 ; batch seconds 4.3 
+13:38:49 Bootstrap 34 : 40 / 999 ; batch seconds 3.8 
+13:38:54 Bootstrap 34 : 48 / 999 ; batch seconds 4.6 
+13:38:58 Bootstrap 34 : 56 / 999 ; batch seconds 4.4 
+13:39:02 Bootstrap 34 : 64 / 999 ; batch seconds 4.5 
+13:39:07 Bootstrap 34 : 72 / 999 ; batch seconds 4.6 
+13:39:11 Bootstrap 34 : 80 / 999 ; batch seconds 4.4 
+13:39:16 Bootstrap 34 : 88 / 999 ; batch seconds 4.4 
+
+Execution halted
+           used (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells   729668 39.0    1368304  73.1         NA  1313272  70.2
+Vcells 11203440 85.5   45091111 344.1      32768 52796201 402.9
+13:39:27 Preparing threshold 34 
+13:39:37 Phase fit 34 ; 4029192 daily rows compressed to 1045879 cells 
+13:39:42 Phase fit and predictions took 5 seconds 
+13:39:48 Bootstrap 34 : 104 / 999 ; batch seconds 5.5 
+13:39:53 Bootstrap 34 : 120 / 999 ; batch seconds 5 
+13:39:58 Bootstrap 34 : 136 / 999 ; batch seconds 5 
+13:40:02 Bootstrap 34 : 152 / 999 ; batch seconds 4.8 
+13:40:08 Bootstrap 34 : 168 / 999 ; batch seconds 5.2 
+13:40:12 Bootstrap 34 : 184 / 999 ; batch seconds 4.7 
+13:40:17 Bootstrap 34 : 200 / 999 ; batch seconds 4.9 
+13:40:22 Bootstrap 34 : 216 / 999 ; batch seconds 4.9 
+13:40:27 Bootstrap 34 : 232 / 999 ; batch seconds 4.9 
+13:40:32 Bootstrap 34 : 248 / 999 ; batch seconds 4.9 
+13:40:37 Bootstrap 34 : 264 / 999 ; batch seconds 4.7 
+13:40:42 Bootstrap 34 : 280 / 999 ; batch seconds 5.2 
+13:40:47 Bootstrap 34 : 296 / 999 ; batch seconds 4.9 
+13:40:52 Bootstrap 34 : 312 / 999 ; batch seconds 4.7 
+13:40:57 Bootstrap 34 : 328 / 999 ; batch seconds 5.1 
+13:41:01 Bootstrap 34 : 344 / 999 ; batch seconds 4.8 
+13:41:06 Bootstrap 34 : 360 / 999 ; batch seconds 4.9 
+13:41:12 Bootstrap 34 : 376 / 999 ; batch seconds 5.3 
+13:41:17 Bootstrap 34 : 392 / 999 ; batch seconds 5.2 
+13:41:21 Bootstrap 34 : 408 / 999 ; batch seconds 4.6 
+13:41:27 Bootstrap 34 : 424 / 999 ; batch seconds 5.1 
+13:41:32 Bootstrap 34 : 440 / 999 ; batch seconds 5.2 
+13:41:37 Bootstrap 34 : 456 / 999 ; batch seconds 4.9 
+13:41:41 Bootstrap 34 : 472 / 999 ; batch seconds 4.6 
+13:41:46 Bootstrap 34 : 488 / 999 ; batch seconds 4.9 
+13:41:51 Bootstrap 34 : 504 / 999 ; batch seconds 4.8 
+13:41:56 Bootstrap 34 : 520 / 999 ; batch seconds 4.8 
+13:42:01 Bootstrap 34 : 536 / 999 ; batch seconds 5 
+13:42:06 Bootstrap 34 : 552 / 999 ; batch seconds 4.9 
+13:42:11 Bootstrap 34 : 568 / 999 ; batch seconds 5 
+13:42:16 Bootstrap 34 : 584 / 999 ; batch seconds 5.2 
+13:42:21 Bootstrap 34 : 600 / 999 ; batch seconds 4.9 
+13:42:26 Bootstrap 34 : 616 / 999 ; batch seconds 5.1 
+13:42:31 Bootstrap 34 : 632 / 999 ; batch seconds 5 
+13:42:36 Bootstrap 34 : 648 / 999 ; batch seconds 5 
+13:42:41 Bootstrap 34 : 664 / 999 ; batch seconds 5.1 
+13:42:46 Bootstrap 34 : 680 / 999 ; batch seconds 5.4 
+13:42:51 Bootstrap 34 : 696 / 999 ; batch seconds 5.1 
+13:42:56 Bootstrap 34 : 712 / 999 ; batch seconds 4.8 
+13:43:01 Bootstrap 34 : 728 / 999 ; batch seconds 4.7 
+13:43:06 Bootstrap 34 : 744 / 999 ; batch seconds 4.9 
+13:43:11 Bootstrap 34 : 760 / 999 ; batch seconds 4.9 
+13:43:16 Bootstrap 34 : 776 / 999 ; batch seconds 4.8 
+13:43:21 Bootstrap 34 : 792 / 999 ; batch seconds 4.9 
+13:43:26 Bootstrap 34 : 808 / 999 ; batch seconds 4.9 
+13:43:31 Bootstrap 34 : 824 / 999 ; batch seconds 5.1 
+13:43:36 Bootstrap 34 : 840 / 999 ; batch seconds 5.1 
+13:43:40 Bootstrap 34 : 856 / 999 ; batch seconds 4.8 
+13:43:45 Bootstrap 34 : 872 / 999 ; batch seconds 5 
+13:43:50 Bootstrap 34 : 888 / 999 ; batch seconds 4.7 
+13:43:55 Bootstrap 34 : 904 / 999 ; batch seconds 5 
+13:44:00 Bootstrap 34 : 920 / 999 ; batch seconds 5.1 
+13:44:05 Bootstrap 34 : 936 / 999 ; batch seconds 4.8 
+13:44:10 Bootstrap 34 : 952 / 999 ; batch seconds 5.2 
+13:44:15 Bootstrap 34 : 968 / 999 ; batch seconds 4.9 
+13:44:20 Bootstrap 34 : 984 / 999 ; batch seconds 5 
+13:44:24 Bootstrap 34 : 999 / 999 ; batch seconds 4.4 
+13:44:25 Completed phase-only threshold 34 
+13:44:25 Preparing threshold 55 
+13:44:33 Phase fit 55 ; 4006080 daily rows compressed to 967020 cells 
+13:44:38 Phase fit and predictions took 4.5 seconds 
+13:44:43 Bootstrap 55 : 16 / 999 ; batch seconds 4.9 
+13:44:48 Bootstrap 55 : 32 / 999 ; batch seconds 5.1 
+13:44:53 Bootstrap 55 : 48 / 999 ; batch seconds 4.7 
+13:44:58 Bootstrap 55 : 64 / 999 ; batch seconds 4.9 
+13:45:02 Bootstrap 55 : 80 / 999 ; batch seconds 4.8 
+13:45:07 Bootstrap 55 : 96 / 999 ; batch seconds 4.6 
+13:45:12 Bootstrap 55 : 112 / 999 ; batch seconds 4.8 
+13:45:16 Bootstrap 55 : 128 / 999 ; batch seconds 4.6 
+13:45:21 Bootstrap 55 : 144 / 999 ; batch seconds 4.5 
+13:45:26 Bootstrap 55 : 160 / 999 ; batch seconds 4.9 
+13:45:30 Bootstrap 55 : 176 / 999 ; batch seconds 4.5 
+13:45:35 Bootstrap 55 : 192 / 999 ; batch seconds 4.8 
+13:45:40 Bootstrap 55 : 208 / 999 ; batch seconds 4.4 
+13:45:44 Bootstrap 55 : 224 / 999 ; batch seconds 4.5 
+13:45:49 Bootstrap 55 : 240 / 999 ; batch seconds 5 
+13:45:54 Bootstrap 55 : 256 / 999 ; batch seconds 4.7 
+13:45:59 Bootstrap 55 : 272 / 999 ; batch seconds 5.1 
+13:46:03 Bootstrap 55 : 288 / 999 ; batch seconds 4.5 
+13:46:08 Bootstrap 55 : 304 / 999 ; batch seconds 4.5 
+13:46:12 Bootstrap 55 : 320 / 999 ; batch seconds 4.5 
+13:46:17 Bootstrap 55 : 336 / 999 ; batch seconds 4.6 
+13:46:22 Bootstrap 55 : 352 / 999 ; batch seconds 4.7 
+13:46:26 Bootstrap 55 : 368 / 999 ; batch seconds 4.6 
+13:46:31 Bootstrap 55 : 384 / 999 ; batch seconds 4.5 
+13:46:35 Bootstrap 55 : 400 / 999 ; batch seconds 4.5 
+13:46:40 Bootstrap 55 : 416 / 999 ; batch seconds 4.8 
+13:46:45 Bootstrap 55 : 432 / 999 ; batch seconds 5 
+13:46:49 Bootstrap 55 : 448 / 999 ; batch seconds 4.6 
+13:46:54 Bootstrap 55 : 464 / 999 ; batch seconds 5 
+13:47:00 Bootstrap 55 : 480 / 999 ; batch seconds 5.3 
+13:47:05 Bootstrap 55 : 496 / 999 ; batch seconds 4.8 
+13:47:09 Bootstrap 55 : 512 / 999 ; batch seconds 4.8 
+13:47:14 Bootstrap 55 : 528 / 999 ; batch seconds 4.7 
+13:47:19 Bootstrap 55 : 544 / 999 ; batch seconds 4.9 
+13:47:24 Bootstrap 55 : 560 / 999 ; batch seconds 4.6 
+13:47:28 Bootstrap 55 : 576 / 999 ; batch seconds 4.8 
+13:47:33 Bootstrap 55 : 592 / 999 ; batch seconds 4.6 
+13:47:38 Bootstrap 55 : 608 / 999 ; batch seconds 5.1 
+13:47:42 Bootstrap 55 : 624 / 999 ; batch seconds 4.4 
+13:47:47 Bootstrap 55 : 640 / 999 ; batch seconds 5 
+13:47:52 Bootstrap 55 : 656 / 999 ; batch seconds 4.8 
+13:47:57 Bootstrap 55 : 672 / 999 ; batch seconds 4.8 
+13:48:02 Bootstrap 55 : 688 / 999 ; batch seconds 5 
+13:48:07 Bootstrap 55 : 704 / 999 ; batch seconds 4.9 
+13:48:12 Bootstrap 55 : 720 / 999 ; batch seconds 4.6 
+13:48:16 Bootstrap 55 : 736 / 999 ; batch seconds 4.8 
+13:48:21 Bootstrap 55 : 752 / 999 ; batch seconds 4.9 
+13:48:26 Bootstrap 55 : 768 / 999 ; batch seconds 5 
+13:48:31 Bootstrap 55 : 784 / 999 ; batch seconds 5 
+13:48:36 Bootstrap 55 : 800 / 999 ; batch seconds 4.8 
+13:48:41 Bootstrap 55 : 816 / 999 ; batch seconds 4.8 
+13:48:46 Bootstrap 55 : 832 / 999 ; batch seconds 4.9 
+13:48:50 Bootstrap 55 : 848 / 999 ; batch seconds 4.4 
+13:48:55 Bootstrap 55 : 864 / 999 ; batch seconds 5.2 
+13:49:00 Bootstrap 55 : 880 / 999 ; batch seconds 4.7 
+13:49:05 Bootstrap 55 : 896 / 999 ; batch seconds 4.6 
+13:49:09 Bootstrap 55 : 912 / 999 ; batch seconds 4.8 
+13:49:14 Bootstrap 55 : 928 / 999 ; batch seconds 4.4 
+13:49:18 Bootstrap 55 : 944 / 999 ; batch seconds 4.8 
+13:49:23 Bootstrap 55 : 960 / 999 ; batch seconds 4.5 
+13:49:28 Bootstrap 55 : 976 / 999 ; batch seconds 4.7 
+13:49:32 Bootstrap 55 : 992 / 999 ; batch seconds 4.3 
+13:49:35 Bootstrap 55 : 999 / 999 ; batch seconds 2.6 
+13:49:35 Completed phase-only threshold 55 
+13:49:35 Preparing threshold 64 
+13:49:43 Phase fit 64 ; 3755700 daily rows compressed to 886783 cells 
+13:49:47 Phase fit and predictions took 4.3 seconds 
+13:49:53 Bootstrap 64 : 16 / 999 ; batch seconds 5.3 
+13:49:58 Bootstrap 64 : 32 / 999 ; batch seconds 5 
+13:50:02 Bootstrap 64 : 48 / 999 ; batch seconds 4.7 
+13:50:07 Bootstrap 64 : 64 / 999 ; batch seconds 4.7 
+13:50:12 Bootstrap 64 : 80 / 999 ; batch seconds 4.4 
+13:50:16 Bootstrap 64 : 96 / 999 ; batch seconds 4.7 
+13:50:21 Bootstrap 64 : 112 / 999 ; batch seconds 4.5 
+13:50:25 Bootstrap 64 : 128 / 999 ; batch seconds 4.6 
+13:50:30 Bootstrap 64 : 144 / 999 ; batch seconds 4.8 
+13:50:35 Bootstrap 64 : 160 / 999 ; batch seconds 4.5 
+13:50:39 Bootstrap 64 : 176 / 999 ; batch seconds 4.5 
+13:50:44 Bootstrap 64 : 192 / 999 ; batch seconds 4.5 
+13:50:48 Bootstrap 64 : 208 / 999 ; batch seconds 4.7 
+13:50:53 Bootstrap 64 : 224 / 999 ; batch seconds 4.4 
+13:50:58 Bootstrap 64 : 240 / 999 ; batch seconds 4.7 
+13:51:02 Bootstrap 64 : 256 / 999 ; batch seconds 4.6 
+13:51:07 Bootstrap 64 : 272 / 999 ; batch seconds 4.7 
+13:51:11 Bootstrap 64 : 288 / 999 ; batch seconds 4.6 
+13:51:16 Bootstrap 64 : 304 / 999 ; batch seconds 4.5 
+13:51:21 Bootstrap 64 : 320 / 999 ; batch seconds 4.7 
+13:51:25 Bootstrap 64 : 336 / 999 ; batch seconds 4.7 
+13:51:30 Bootstrap 64 : 352 / 999 ; batch seconds 4.6 
+13:51:34 Bootstrap 64 : 368 / 999 ; batch seconds 4.5 
+13:51:39 Bootstrap 64 : 384 / 999 ; batch seconds 4.8 
+13:51:44 Bootstrap 64 : 400 / 999 ; batch seconds 4.5 
+13:51:48 Bootstrap 64 : 416 / 999 ; batch seconds 4.4 
+13:51:53 Bootstrap 64 : 432 / 999 ; batch seconds 4.4 
+13:51:57 Bootstrap 64 : 448 / 999 ; batch seconds 4.7 
+13:52:02 Bootstrap 64 : 464 / 999 ; batch seconds 4.7 
+13:52:07 Bootstrap 64 : 480 / 999 ; batch seconds 4.7 
+13:52:11 Bootstrap 64 : 496 / 999 ; batch seconds 4.5 
+13:52:15 Bootstrap 64 : 512 / 999 ; batch seconds 4.4 
+13:52:20 Bootstrap 64 : 528 / 999 ; batch seconds 4.6 
+13:52:24 Bootstrap 64 : 544 / 999 ; batch seconds 4.2 
+13:52:29 Bootstrap 64 : 560 / 999 ; batch seconds 4.5 
+13:52:34 Bootstrap 64 : 576 / 999 ; batch seconds 4.8 
+13:52:38 Bootstrap 64 : 592 / 999 ; batch seconds 4.7 
+13:52:43 Bootstrap 64 : 608 / 999 ; batch seconds 4.3 
+13:52:47 Bootstrap 64 : 624 / 999 ; batch seconds 4.5 
+13:52:52 Bootstrap 64 : 640 / 999 ; batch seconds 4.6 
+13:52:56 Bootstrap 64 : 656 / 999 ; batch seconds 4.5 
+13:53:00 Bootstrap 64 : 672 / 999 ; batch seconds 4.3 
+13:53:05 Bootstrap 64 : 688 / 999 ; batch seconds 4.4 
+13:53:09 Bootstrap 64 : 704 / 999 ; batch seconds 4.5 
+13:53:14 Bootstrap 64 : 720 / 999 ; batch seconds 4.5 
+13:53:18 Bootstrap 64 : 736 / 999 ; batch seconds 4.5 
+13:53:23 Bootstrap 64 : 752 / 999 ; batch seconds 4.2 
+13:53:27 Bootstrap 64 : 768 / 999 ; batch seconds 4.1 
+13:53:31 Bootstrap 64 : 784 / 999 ; batch seconds 4.3 
+13:53:36 Bootstrap 64 : 800 / 999 ; batch seconds 4.5 
+13:53:40 Bootstrap 64 : 816 / 999 ; batch seconds 4.4 
+13:53:44 Bootstrap 64 : 832 / 999 ; batch seconds 4.4 
+13:53:49 Bootstrap 64 : 848 / 999 ; batch seconds 4.3 
+13:53:53 Bootstrap 64 : 864 / 999 ; batch seconds 4.3 
+13:53:57 Bootstrap 64 : 880 / 999 ; batch seconds 4.4 
+13:54:01 Bootstrap 64 : 896 / 999 ; batch seconds 4.1 
+13:54:06 Bootstrap 64 : 912 / 999 ; batch seconds 4.6 
+13:54:10 Bootstrap 64 : 928 / 999 ; batch seconds 4.3 
+13:54:15 Bootstrap 64 : 944 / 999 ; batch seconds 4.4 
+13:54:19 Bootstrap 64 : 960 / 999 ; batch seconds 4.5 
+13:54:24 Bootstrap 64 : 976 / 999 ; batch seconds 4.6 
+13:54:28 Bootstrap 64 : 992 / 999 ; batch seconds 4.3 
+13:54:30 Bootstrap 64 : 999 / 999 ; batch seconds 2 
+13:54:30 Completed phase-only threshold 64 
+13:54:30 Completed all requested fits. Render with scripts/plot_suppression_figures.R 

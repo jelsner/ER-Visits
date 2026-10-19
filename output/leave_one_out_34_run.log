@@ -1,0 +1,20 @@
+           used (Mb) gc trigger  (Mb) limit (Mb) max used  (Mb)
+Ncells   936919 50.1    1809842  96.7         NA  1368450  73.1
+Vcells 11568559 88.3   45656748 348.4      32768 55600790 424.3
+14:09:59 Completed 4 of 58 fits
+14:10:08 Completed 8 of 58 fits
+14:10:18 Completed 12 of 58 fits
+14:10:28 Completed 16 of 58 fits
+14:10:37 Completed 20 of 58 fits
+14:10:47 Completed 24 of 58 fits
+14:10:57 Completed 28 of 58 fits
+14:11:06 Completed 32 of 58 fits
+14:11:16 Completed 36 of 58 fits
+14:11:26 Completed 40 of 58 fits
+14:11:35 Completed 44 of 58 fits
+14:11:44 Completed 48 of 58 fits
+14:11:53 Completed 52 of 58 fits
+14:12:02 Completed 56 of 58 fits
+14:12:11 Completed 58 of 58 fits
+Error: unexpected symbol in "2). The ≥34 kt RMW exposure rule, shared-date phase calendar, fixed effects, population offset, reported-count cutoff ≥6 and suppressed-group mean 3.8 were retained. The ZIP universe remai"
+Execution halted

@@ -1,0 +1,4 @@
+Full-model maximum difference: 2.44249e-15
+58 paired fits converged (full sample + 39 storm omissions + 18 season omissions).
+Storm removal includes every window ZIP-day, including overlaps; no exposure days recoded as reference.
+Season removal includes every May–November ZIP-day in the omitted year.
