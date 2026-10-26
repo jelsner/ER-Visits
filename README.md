@@ -73,3 +73,24 @@ figures and estimates are retained.
 
 The COVID exclusion intervals still use ZIP-only resampling; they have not been
 updated to the two-way design used in the primary Figure 1.
+
+## RMW-radius sensitivity (Figure S2)
+
+Figure S2 compares the original RMW corridor with radii multiplied by 1.5,
+holding the original track segments, storm inventory, dates and intensity
+classifications fixed. Each expanded-radius phase model uses 999 two-way
+ZIP-and-season bootstrap draws, the corrected 0–5 suppression definition,
+and a suppressed-group mean of 3.8 visits. All 2,997 draws were estimable.
+
+- Comparison figure: `figs/FigS2_rmw_sensitivity.png`.
+- Expanded-radius Figure 1 reproduction: `figs/Fig1_phase_effects_rmw_1p5.png`.
+- Numerical comparisons, geometry checks, bootstrap draws and reproduction
+  commands: `output/rmw_sensitivity/README.md`.
+- Caption, methods and results: `manuscript/Supplementary_RMW_sensitivity.md`.
+- Reviewer response: `manuscript/Reviewer_response_RMW_sensitivity.md`.
+
+Impact estimates remain similar at both radii and their intervals exclude zero
+at all thresholds. Threat and Cleanup estimates move closer to zero; their
+expanded-radius intervals include zero throughout. Comparisons are descriptive,
+because widening the corridor changes exposure/reference assignments and can
+change the prediction population. The original Figures 1 and S1 are retained.

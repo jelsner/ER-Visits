@@ -1,0 +1,4 @@
+Protected original exposure/population inputs and Figures 1 and S1 are byte-identical to their pre-analysis versions.
+Valid expanded-radius bootstrap draws: 999, 999, 999
+Every valid draw has a complete phase triplet and season multiplicities summing to 18.
+Expanded point estimates and intervals are finite; original estimates and intervals are reused without modification.

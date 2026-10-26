@@ -3,6 +3,7 @@
 # Options: --bootstrap=200 --workers=4 --mean=3.8 --thresholds=34,55,64
 # Period sensitivity: --end-year=2019 --output=output/covid_exclusion --daily=false
 # Two-way inference: --cluster=zip_season --output=output/twoway_bootstrap --daily=false
+# Alternative exposure: --pairs=FILE --population=FILE; use a separate --output.
 suppressPackageStartupMessages({library(data.table);library(fixest);library(lubridate)})
 setDTthreads(1); setFixest_nthreads(1)
 args <- commandArgs(trailingOnly=TRUE)
@@ -16,6 +17,10 @@ thresholds <- as.integer(strsplit(option("thresholds","34,55,64"),",")[[1]])
 end_year <- as.integer(option("end-year","2022"))
 include_daily <- identical(tolower(option("daily","true")),"true")
 bootstrap_mode <- option("cluster","zip")
+pairs_file <- option("pairs","output/event_time/zip_storm_alignment.csv")
+population_file <- option("population","output/event_time/population_annual.csv")
+input_md5 <- unname(tools::md5sum(c(pairs_file,population_file)))
+stopifnot(!anyNA(input_md5))
 stopifnot(B>=0,workers>=1,central_mean>=0,central_mean<=5,
           end_year>=2005,end_year<=2022,bootstrap_mode%in%c("zip","zip_season"))
 out <- option("output","output/suppression_corrected")
@@ -23,6 +28,10 @@ if(end_year!=2022 && out=="output/suppression_corrected")
   stop("Use a separate --output directory for period sensitivity analyses.")
 if(bootstrap_mode!="zip" && out=="output/suppression_corrected")
   stop("Use a separate --output directory for a different bootstrap design.")
+if((pairs_file!="output/event_time/zip_storm_alignment.csv" ||
+    population_file!="output/event_time/population_annual.csv") &&
+   out%in%c("output/suppression_corrected","output/twoway_bootstrap"))
+  stop("Use a separate --output directory for different exposure or population inputs.")
 dir.create(out,recursive=TRUE,showWarnings=FALSE)
 prior_config <- file.path(out,"configuration.csv")
 if(file.exists(prior_config) && length(list.files(out,pattern="^bootstrap_.*csv$"))) {
@@ -31,20 +40,29 @@ if(file.exists(prior_config) && length(list.files(out,pattern="^bootstrap_.*csv$
   prior_end <- if("end_year"%in%names(prior)) prior$end_year[1] else 2022L
   if(prior_mode!=bootstrap_mode || prior_end!=end_year)
     stop("Cached draws have a different clustering design or study period; use a fresh output directory.")
+  prior_pairs <- if("pairs_md5"%in%names(prior)) prior$pairs_md5[1] else
+    unname(tools::md5sum("output/event_time/zip_storm_alignment.csv"))
+  prior_population <- if("population_md5"%in%names(prior)) prior$population_md5[1] else
+    unname(tools::md5sum("output/event_time/population_annual.csv"))
+  if(prior_pairs!=input_md5[1] || prior_population!=input_md5[2])
+    stop("Cached draws have different exposure/population inputs; use a fresh output directory.")
 }
 note <- function(...) {cat(format(Sys.time(),"%H:%M:%S"),...,"\n");flush.console()}
 capture.output(sessionInfo(),file=file.path(out,"session_info.txt"))
 fwrite(data.table(suppressed_lower=0,suppressed_upper=5,reported_min=6,
                  central_mean=central_mean,bootstrap_requested=B,workers=workers,
                  seed=20261018,start_year=2005,end_year=end_year,
-                 include_daily=include_daily,bootstrap_mode=bootstrap_mode),
+                 include_daily=include_daily,bootstrap_mode=bootstrap_mode,
+                 pairs_file=pairs_file,population_file=population_file,
+                 pairs_md5=input_md5[1],population_md5=input_md5[2]),
        file.path(out,"configuration.csv"))
 
-# Reuse the previously constructed, unchanged RMW/ZIP geometry and date pairs.
-pairs <- fread("output/event_time/zip_storm_alignment.csv",colClasses=c(zip="character"))
+# Read cached RMW/ZIP assignments, using alternative files for radius sensitivity.
+pairs <- fread(pairs_file,colClasses=c(zip="character"))
 pairs[,zip:=sprintf("%05d",as.integer(zip))]
-pairs[,`:=`(shared=as.IDate(shared),local=as.IDate(local))]
-population <- fread("output/event_time/population_annual.csv",colClasses=c(zip="character"))
+pairs[,shared:=as.IDate(shared)]
+if(include_daily) pairs[,local:=as.IDate(local)] else pairs[,local:=shared]
+population <- fread(population_file,colClasses=c(zip="character"))
 population[,zip:=sprintf("%05d",as.integer(zip))]
 stopifnot(!anyDuplicated(pairs[,.(zip,SID)]),!anyDuplicated(population[,.(zip,year)]))
 raw <- fread("data/Combined_ER_Data.csv")
@@ -281,6 +299,8 @@ for(thr in thresholds) {
   rm(base,daily_models,mm,dd);gc()
   note("Completed threshold",thr)
 }
+if(pairs_file!="output/event_time/zip_storm_alignment.csv")
+  note("Completed alternative-exposure fits. For RMW sensitivity, render with scripts/plot_rmw_sensitivity.R") else
 if(bootstrap_mode=="zip_season")
   note("Completed all requested fits. Render with scripts/plot_twoway_figure1.R") else
 if(include_daily) note("Completed all requested fits. Render with scripts/plot_suppression_figures.R") else

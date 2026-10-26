@@ -1,0 +1,10 @@
+file,md5
+data/IBTrACS.NA.list.v04r00.lines.shp,c4798f217889905a91d7e5ddeed2216c
+data/IBTrACS.NA.list.v04r00.lines.shx,de0e200304d1c0f54b6e3a779069c56d
+data/IBTrACS.NA.list.v04r00.lines.dbf,c96af85fe15a6167ad56bf4b22dfc587
+data/IBTrACS.NA.list.v04r00.lines.prj,c742bee3d4edfc2948a2ad08de1790a5
+data/IBTrACS.NA.list.v04r00.lines.zip,0fbb908439ee3639b84b363fb6a8f6f4
+data/Combined_ER_Data.csv,34a326be84bb1fc27ba569678738033e
+scripts/prepare_rmw_sensitivity.R,d1f1fc04ef4d14cae028d125d42f52b9
+scripts/regenerate_suppression_figures.R,fa9c539e1dcfbba9d2869f1e6f502d04
+scripts/plot_rmw_sensitivity.R,9c782c5615d595965c0484067c68f2fb

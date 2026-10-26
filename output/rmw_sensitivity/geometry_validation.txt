@@ -1,0 +1,5 @@
+Original-radius ZIP assignments exactly reproduce the saved assignments.
+Every original ZIP–storm pair is included at 1.5 RMW.
+Storm dates, intensities, retained track segments and storm inventory are held fixed.
+Original-ZIP annual population maximum difference: 0
+Expanded swaths change geographic assignment only; no local timing analysis is performed.

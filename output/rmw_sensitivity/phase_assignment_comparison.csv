@@ -1,0 +1,13 @@
+threshold,event,original_zip_days,expanded_zip_days
+34,Cleanup,64230,99422
+34,Impact,8030,12463
+34,None,3892692,3817603
+34,Threat,64240,99704
+55,Cleanup,26080,41320
+55,Impact,3260,5165
+55,None,3950660,3941387
+55,Threat,26080,41320
+64,Cleanup,14072,21272
+64,Impact,1759,2659
+64,None,3725797,3964729
+64,Threat,14072,21272

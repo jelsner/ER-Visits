@@ -1,0 +1,4 @@
+threshold,original_model_zips,expanded_model_zips,original_overlap_days,expanded_overlap_days,original_zip_days,expanded_zip_days
+34,1046,1046,10,282,4029192,4029192
+55,1040,1046,0,0,4006080,4029192
+64,975,1041,0,0,3755700,4009932
